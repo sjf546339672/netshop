@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf import global_settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "goods",
+    "userapp",
 
 ]
 
@@ -64,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'userapp.mycontextprocessors.getUserInfo',
             ],
         },
     },
@@ -132,3 +136,23 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 后台上传文件的路径
+
+
+CACHES = {
+    'default': {
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    "session-redis": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    }
+}
+# CACHE_MIDDLEWARE_KEY_PREFIX = ''
+# CACHE_MIDDLEWARE_SECONDS = 600
+# CACHE_MIDDLEWARE_ALIAS = 'default'
+
+SESSION_CACHE_ALIAS = "session-redis"
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+# global_settings
