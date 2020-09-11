@@ -67,31 +67,22 @@
                     <input type="number" name="" value="1">
                     <div class="jia">+</div>
                 </div>
-                <form action="http://127.0.0.1:8000/cart/" method="post">
+                <form action="/cart/" method="post">
+                    {% csrf_token %}
                     <input name="colorid" type="hidden">
-                    <input name="goodsid" type="hidden" value="4">
+                    <input name="goodsid" type="hidden" value="{{ detail_good.id }}">
                     <input name="sizeid" type="hidden">
                     <input name="count" type="hidden">
-                    <input name="type" value="add" type="hidden">
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                           value="QYciumFpuMt1tAzw4HyUsSbgralhP9ykf6fRRkLbNhqtrzI6FElzKnFZdIenh6pT">
+                    <input name="flag" value="add" type="hidden">
                     <button class="male" onclick="goCart()">单独购买</button>
                 </form>
             </div>
             <div class="detail-con-nav">
                 <ul class="detail-nav">
-                    <li class="active nav-item "><a
-                            href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">商品详情</a>
-                    </li>
-                    <li class="nav-item"><a
-                            href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">物流与售后</a>
-                    </li>
-                    <li class="nav-item"><a
-                            href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">消费保障</a>
-                    </li>
-                    <li class="nav-item"><a
-                            href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">手机购买</a>
-                    </li>
+                    <li class="active nav-item "><a href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">商品详情</a></li>
+                    <li class="nav-item"><a href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">物流与售后</a></li>
+                    <li class="nav-item"><a href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">消费保障</a></li>
+                    <li class="nav-item"><a href="http://127.0.0.1:8000/goodsdetails/?goodsid=26#">手机购买</a></li>
                 </ul>
             </div>
             <div class="sub-nav">
@@ -177,13 +168,10 @@
         //单独购买
         //<input type="hidden" name="colorid" value=""/>
         function goCart() {
-
             //<li class="MinImgactive" colorid="11"></li>
             $('form').children('input[name="colorid"]').val($('.MinImg.active').attr('colorid'))
             $('form').children('input[name="sizeid"]').val($('.size-item.active').attr('sizeid'))
             $('form').children('input[name="count"]').val($('.num').children('input[type="number"]').val())
-
-
         }
     </script>
 {% endblock %}

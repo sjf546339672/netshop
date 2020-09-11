@@ -6,9 +6,7 @@
 
 
 {% block headerjs %}
-
     <script type="text/javascript" src="{% static 'md5-min.js' %}"></script>
-
 {% endblock %}
 
 
@@ -32,8 +30,8 @@
 
                     <input type="text" style="height:36px;width: 100px;" id="code" onblur="checkCode(this.value)"><img src="/user/loadCode.jpg" onclick="changeCode(this)"><span style="color:red;" id="cSpan"></span>
 
-                    <input type="hidden" name="redirect" value="">
-                    <input type="hidden" name="cartitems" value="None">
+                    <input type="hidden" name="redirect" value="{{redirect}}">
+                    <input type="hidden" name="cartitems" value="{{cartitems}}">
 
                     <button class="login-btn" style="color: white;text-decoration: none;cursor: pointer">登录</button>
                 </div>
@@ -90,7 +88,7 @@
 
             //var hex_pwd = hex_md5(password+time)
             $('#pwd').val(hex_pwd);
-
+            return true;
         }
 
         function checkCode(txt){

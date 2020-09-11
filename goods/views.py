@@ -53,7 +53,6 @@ def recomend_view(func):
     def wrapper(detailView, request, goods_id, *args, **kwargs):
         # 将存放在cookie中的goodsId获取
         cookie_str = request.COOKIES.get('recommend', '')
-        print("===============================", cookie_str)
 
         # 存放所有goodsid的列表
         goodsIdList = [gid for gid in cookie_str.split() if gid.strip()]
