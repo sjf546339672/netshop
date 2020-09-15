@@ -83,7 +83,7 @@ class DetailView(View):
         goods_id = int(goods_id)
         # 根据goods_id查询商品信息(goods对象)
         detail_good = Goods.objects.get(id=goods_id)
-        return render(request, "detail.html", {"detail_good": detail_good, "recommend_list": recommend_list})
+        return render(request, "detail.html", {"detail_good": detail_good,  "recommend_list": recommend_list})
 
 
 

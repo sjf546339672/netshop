@@ -85,7 +85,7 @@
                 <!--------tips count---------------->
                 <div class="count tips">
                     <p><span class="fl">合计：</span><span
-                            class="fr">￥{{ totalPrice }}</span></p>
+                            class="fr" id="totalPriceId">￥{{ totalPrice }}</span></p>
                 </div>
                 <!--<input type="button" name="" value="去支付"> -->
                 <a href="/order/order.html/" id="pay"
@@ -93,22 +93,15 @@
             </div>
         </div>
     </div>
-
-
-
-
 {% endblock %}
-
-
-
 {% block footerjs %}
 
 
-    <script src="/static/public.js" type="text/javascript"
+    <script src="{% static "public.js" %}" type="text/javascript"
             charset="utf-8"></script>
-    <script src="/static/pro.js" type="text/javascript"
+    <script src="{% static "pro.js" %}" type="text/javascript"
             charset="utf-8"></script>
-    <script src="/static/user.js" type="text/javascript"
+    <script src="{% static "user.js" %}" type="text/javascript"
             charset="utf-8"></script>
 
     <script>
@@ -127,10 +120,10 @@
 
 
             //拼接请求参数
-            var params = 'address=1&payway=' + $('.way .on').attr('name') + '&cartitems=' + JSON.stringify(cartitems)
+            var params = 'address={{ address.id }}&payway='+$('.way .on').attr('name')+'&cartitems='+JSON.stringify(cartitems)+'&totalPrice='+$('#totalPriceId').html();
 
             //拼接请求地址
-            var url = '/order/toorder/?' + params
+            var url = '/order/topay/?' + params
 
             $(this).attr('href', url)
 
